@@ -30,3 +30,9 @@ jobs:
         docker build -t github-actions-smarthack .
         docker tag github-actions-smarthack:latest public.ecr.aws/o7n0b9d2/github-actions-smarthack:latest
         docker push public.ecr.aws/o7n0b9d2/github-actions-smarthack:latest
+
+    - name: Restart task
+      id: restart-task
+      run: |
+        $x=$(aws ecs list-tasks --cluster ${{ secrets.AWS_CLUSTER }} --output text --query taskArns[0])
+        aws ecs stop-task --task $x --cluster ${{ secrets.AWS_CLUSTER }}
