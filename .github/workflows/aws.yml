@@ -6,4 +6,4 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: "@echo hello"
+      - run: "echo hello"
