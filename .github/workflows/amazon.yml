@@ -37,3 +37,4 @@ jobs:
         x=$(aws ecs list-tasks --cluster ${{ secrets.AWS_CLUSTER }} --output text --query taskArns[0])
         echo $x
         aws ecs stop-task --task $x --cluster ${{ secrets.AWS_CLUSTER }}
+        aws ecs run-task --task-definition ${{ secrets.AWS_CLUSTER }} --cluster ${{ secrets.AWS_CLUSTER }}
