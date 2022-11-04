@@ -21,14 +21,14 @@ jobs:
 
     - name: Login to AWS
       id: login-ecr
-      run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/o7n0b9d2
+      run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_PUBLIC_ECR }}
 
     - name: Build, tag, and push image to AWS
       id: build-and-push-image
       run: |
         docker build -t github-actions-smarthack .
-        docker tag github-actions-smarthack:latest public.ecr.aws/o7n0b9d2/github-actions-smarthack:latest
-        docker push public.ecr.aws/o7n0b9d2/github-actions-smarthack:latest
+        docker tag ${{ secrets.AWS_IMAGE }} ${{ secrets.AWS_PUBLIC_ECR }}/${{ secrets.AWS_IMAGE }}
+        docker push ${{ secrets.AWS_PUBLIC_ECR }}/${{ secrets.AWS_IMAGE }}
 
     - name: Restart task
       id: restart-task
