@@ -13,7 +13,7 @@ app.use(cors({
 
 
 app.get("/x",(req:Request,res:Response) => {
-    res.send({x:"Hello world"});
+    res.send({x:"Helloooooooo world"});
 })
 
 app.post("/api",(req:Request,res:Response) => {
