@@ -2,8 +2,6 @@ FROM node:alpine
 
 WORKDIR /app
 
-RUN
-
 COPY package.json .
 
 RUN npm i -g typescript && npm install
