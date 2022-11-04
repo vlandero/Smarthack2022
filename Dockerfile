@@ -8,7 +8,7 @@ RUN npm i -g typescript && npm install
 
 COPY . .
 
-RUN cd fe && npx react-scripts build
+RUN cd fe && npm i && npx react-scripts build
 
 RUN cd ../
 
