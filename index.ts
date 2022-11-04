@@ -10,7 +10,7 @@ app.use(cors({
 }));
 
 app.get("/",(req:Request,res:Response) => {
-    res.send("Hello there newwwwwwwasdf");
+    res.send("sunt pe test");
 })
 
 app.get("/x",(req:Request,res:Response) => {
