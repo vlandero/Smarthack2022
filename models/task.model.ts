@@ -1,5 +1,5 @@
-import Comment from "models/comment.model";
-import Employee from "models/employee.model";
+import Comment from "./comment.model";
+import Employee from "./employee.model";
 
 export default class Task{
     name: string;
