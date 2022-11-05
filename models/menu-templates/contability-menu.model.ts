@@ -1,30 +1,52 @@
-import Employee from "../employee.model";
 import MenuBase from "./base-menu.model";
 import MarketingMenu from "./marketing-menu.model";
 import LogisticsMenu from "./logistics-menu.model";
+import ProductionMenu from "./production-menu.model";
+import UtilityMenu from "./utility-menu.model";
 export default class ContabilityMenu extends MenuBase {
-    monthlyBudget: number;
-    monthlyEquipmentCosts: number;
-    monthlyInventoryCosts: number;
-    monthlyMarketingCosts: number;
-    monthlyRentalCosts: number;
-    monthlyUtilityCosts: number;
-
-    fetchSalesCosts = (logisticsMenu: LogisticsMenu): void => { this.monthlyRentalCosts = logisticsMenu.totalSalesCosts(); };
-    fetchMarketingCosts = (mMenu: MarketingMenu): void => { this.monthlyMarketingCosts = mMenu.totalMarketingCosts(); };
-    monthlySalaries = (employees: Employee[]): number => {
-        return employees.reduce((acc, employee) => acc + employee.salary, 0);
+    monthlyProduction?: ProductionMenu;
+    monthlyMarketing?: MarketingMenu;
+    monthlyUtility?: UtilityMenu;
+    monthlyLogistics?: LogisticsMenu;
+    monthlyCosts = (): number => {
+        let totalCosts = 0;
+        if (this.monthlyProduction) {
+            totalCosts += this.monthlyProduction.monthlyProductionCosts();
+        }
+        if (this.monthlyMarketing) {
+            totalCosts += this.monthlyMarketing.monthlyMarketingCosts();
+        }
+        if (this.monthlyUtility) {
+            totalCosts += this.monthlyUtility.totalSalesCosts();
+        }
+        if (this.monthlyLogistics) {
+            totalCosts += this.monthlyLogistics.totalSalesCosts();
+        }
+        return totalCosts;
     };
-    monthlyTotalCosts = (employees: Employee[]): number => {
-        return this.monthlyEquipmentCosts + this.monthlyInventoryCosts + this.monthlyMarketingCosts + this.monthlyRentalCosts + this.monthlyUtilityCosts + this.monthlySalaries(employees);
+    monthlyBudget = (): number => {
+        let totalBudget = 0;
+        if (this.monthlyProduction) {
+            totalBudget += this.monthlyProduction.monthlyProductionBudget;
+        }
+        if (this.monthlyMarketing) {
+            if(this.monthlyMarketing.monthlyMarketingBudget) {
+                totalBudget += this.monthlyMarketing.monthlyMarketingBudget;
+            }
+        }
+        if (this.monthlyUtility) {
+            if(this.monthlyUtility.monthlyUtilityBudget) {
+                totalBudget += this.monthlyUtility.monthlyUtilityBudget;
+            }
+        }
+        if (this.monthlyLogistics) {
+            if(this.monthlyLogistics.monthlyLogisticsBudget) {
+                totalBudget += this.monthlyLogistics.monthlyLogisticsBudget;
+            }
+        }
+        return totalBudget;
     };
-    monthlyProfit = (employees: Employee[]): number => {
-        return this.monthlyBudget - this.monthlyTotalCosts(employees);
-    };
-    monthlyProfitPercentage = (employees: Employee[]): number => {
-        return (this.monthlyProfit(employees) / this.monthlyBudget) * 100;
-    };
-    monthlyAnticipatedProfit = (employees: Employee[], secondMonthProfit: number, thirdMonthProfit: number): number => {
-        return (this.monthlyProfit(employees) + secondMonthProfit + thirdMonthProfit) / 3;
+    monthlyProfit = (): number => {
+        return this.monthlyBudget() - this.monthlyCosts();
     };
 }

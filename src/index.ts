@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path')
 import { Request,Response } from "express";
+import * as mongoose from "mongoose";
+require('dotenv').config();
 
 
 const app = express();
@@ -11,6 +13,7 @@ app.use(cors({
     origin: '*'
 }));
 
+mongoose.connect(process.env.MONGO_URI);
 
 app.get("/x",(req:Request,res:Response) => {
     res.send({x:"Hello world"});

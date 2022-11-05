@@ -18,7 +18,8 @@
 
     "alwaysStrict": true,
     "allowUnreachableCode": false,
-    "noImplicitAny": true, 
+    "noImplicitAny": true,
+    "noPropertyAccessFromIndexSignature": true,
     "strictNullChecks": true,
 
     "noImplicitReturns": true,
@@ -26,7 +27,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "*.d.ts"],
   "exclude": [
     "node_modules/**/*"
   ]
