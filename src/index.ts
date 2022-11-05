@@ -14,7 +14,7 @@ app.use(cors({
     origin: '*'
 }));
 
-mongoose.connect(process.env.MONGO_URI);
+// mongoose.connect(process.env.MONGO_URI);
 // const Startupp = mongoose.model('Startup', startupSchema);
 
 // const startup = new Startupp({
