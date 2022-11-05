@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
+
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [pwd, setPwd] = useState<string>("");
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/home`;
+    navigate(path);
+  };
 
   return (
     <div className="App">
@@ -13,6 +21,8 @@ const SignUp = () => {
           className="input"
           type="email"
           placeholder="Enter your email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           required
         />
         <h3 className="password">Password</h3>
@@ -20,6 +30,8 @@ const SignUp = () => {
           className="input"
           placeholder="Enter your password"
           type="password"
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd}
           required
         />
         <h3 className="password">Reenter your password</h3>
@@ -29,7 +41,7 @@ const SignUp = () => {
           type="password"
           required
         />
-        <button className="input_submit" type="submit">
+        <button className="input_submit" type="submit" onClick={routeChange}>
           Go
         </button>
       </form>
