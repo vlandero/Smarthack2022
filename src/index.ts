@@ -13,8 +13,7 @@ app.use(cors({
     origin: '*'
 }));
 
-// mongoose.connect(process.env.MONGO_URI);
-console.log(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
 
 app.get("/x",(req:Request,res:Response) => {
     res.send({x:"Hello world"});
