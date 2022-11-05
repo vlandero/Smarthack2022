@@ -1,0 +1,55 @@
+.dashboard {
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  background-color: #bccce6;
+}
+.menu {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0;
+  /* margin-right: 0; */
+  justify-content: space-around;
+  display: flex;
+}
+.tabs {
+  flex: 1;
+  background-color: #bccce6;
+}
+.content {
+  flex: 3;
+  background-color: #ffdaba;
+  border-radius: 2%;
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+}
+li > button {
+  border-radius: 15%;
+  margin-bottom: 2%;
+  font-size: large;
+  float: left;
+  list-style: none;
+  text-align: center;
+  background-color: #eb78ff;
+  margin-right: 30px;
+  width: 200px;
+  line-height: 90px;
+  cursor: pointer;
+}
+.title {
+  text-align: center;
+  background-color: #c3fad7;
+  margin: 0;
+  padding: 0;
+}
+.content {
+  margin: 0;
+}
+.addPage {
+  font-size: 600%;
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}
