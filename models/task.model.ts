@@ -1,4 +1,4 @@
-import Comment from "models/menu-templates/comment.model";
+import Comment from "models/comment.model";
 import Employee from "models/employee.model";
 
 export default class Task{

@@ -1,4 +1,4 @@
-import HrMenu from "./menu-templates/hr.model";
+import HrMenu from "./menu-templates/hr-menu.model";
 import TaskManagementMenu from "./menu-templates/task-management.model";
 
 export type Role = 'admin' | 'employee';
