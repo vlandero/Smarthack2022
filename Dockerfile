@@ -12,6 +12,6 @@ RUN cd fe && npm i && npx react-scripts build
 
 RUN cd ../
 
-EXPOSE 1234
+EXPOSE 80
 
 CMD ["npm", "start"]

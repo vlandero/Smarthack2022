@@ -1,0 +1,21 @@
+.contability {
+
+}
+.contentt{
+    margin-left:270px
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 60px
+}
+
+h2{
+    cursor: pointer;
+}
+
+.costs{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 60px
+}
