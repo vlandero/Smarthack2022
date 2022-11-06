@@ -59,6 +59,7 @@ app.post("/login", async (req: Request, res: Response) => {
     if (owner) {
         req.session.role = "owner";
         req.session.username = username;
+        req.session.save();
         return res.send({...req.session, message: "Logged in as owner"});
     }
     const startupId = username.split("_")[0];
@@ -124,6 +125,16 @@ app.post("/set-startup", async (req: Request, res: Response) => {
     res.send(req.session);
 });
 
+//get all startups from owner
+app.post("/get-startups", async (req: Request, res: Response) => {
+    const owner = await OwnerModel.findOne({ username: req.body.username });
+    if (owner) {
+        const startups = await StartupModel.find({ _id: { $in: owner.startupsId } });
+        return res.send(startups);
+    }
+    res.send([]);
+});
+
 app.post("/api", (req: Request, res: Response) => {
     console.log(req.body);
     res.status(200).send(req.body);
@@ -133,6 +144,6 @@ app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.resolve(__dirname, '../fe/build', 'index.html'));
 });
 
-app.listen(1234, () => {
-    console.log("App listening on 1234");
+app.listen(80, () => {
+    console.log("App listening on 80");
 })
