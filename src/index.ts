@@ -15,6 +15,7 @@ declare module "express-session" {
     interface SessionData {
         role?: "owner" | "employee" | null
         username?: string | null
+        password?: string | null
         startupId?: string
     }
 }
@@ -59,6 +60,7 @@ app.post("/login", async (req: Request, res: Response) => {
     if (owner) {
         req.session.role = "owner";
         req.session.username = username;
+        req.session.password = password;
         return res.send({...req.session, message: "Logged in as owner"});
     }
     const startupId = username.split("_")[0];
@@ -68,6 +70,7 @@ app.post("/login", async (req: Request, res: Response) => {
         if (employee) {
             req.session.role = "employee";
             req.session.username = username;
+            req.session.password = password;
             res.send({...req.session, message: "Logged in as employee"});
         }
     }
