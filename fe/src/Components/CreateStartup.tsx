@@ -32,7 +32,7 @@ const CreateStartup = () => {
                 console.log(startup);
               }}
             >
-              <button>{startup}</button>
+              <button>{startup.name}</button>
             </li>
           ))}
         </ul>
@@ -65,6 +65,7 @@ const CreateStartup = () => {
                 {
                   name: name,
                   description: description,
+                  username: JSON.parse(sessionStorage.getItem("session") || "{}").username
                 }
               );
               setStartups([...startups, result.data]);

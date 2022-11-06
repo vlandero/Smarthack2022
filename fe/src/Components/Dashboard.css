@@ -12,59 +12,26 @@
   /* margin-right: 0; */
   justify-content: space-around;
   display: flex;
+  z-index: 1000;
 }
-.tabs {
-  flex: 1;
-  background-color: #bccce6;
-}
+
 .content {
   flex: 3;
-  background-color: #ffdaba;
+  background-color:   #fff9ba;
   text-align: center;
 }
 
 ul {
   list-style-type: none;
 }
-li > button {
-  border-radius: 15%;
-  margin-bottom: 2%;
-  font-size: large;
-  float: left;
-  list-style: none;
-  text-align: center;
-  background-color: #eb78ff;
-  margin-right: 30px;
-  width: 250px;
-  line-height: 90px;
-  cursor: pointer;
-}
-li > button:hover {
-  background-color: #ff00ff;
-}
 .title {
   text-align: center;
-  background-color: #c3fad7;
+  color: white;
   margin: 0;
   padding: 0;
-}
-.title > h1 {
   font-size: 50px;
   margin: 0;
-  padding: 0;
-}
-.addPage {
-  font-size: 600%;
-  height: 100px;
-  width: 100px;
-  border-radius: 100%;
-}
-.addPage:hover {
-  background-color: cyan;
-}
-.addPage > h1 {
-  font-size: 100%;
-  margin: 0;
+  height: 100%;
   padding: 0;
 }
 .Calendar {
@@ -73,4 +40,123 @@ li > button:hover {
   display: flex;
   flex-direction: column;
   font-size: large;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+body {
+  overflow-x: hidden;
+}
+
+/* Toggle Styles */
+
+#wrapper {
+  padding-left: 250px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 0;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 250px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 0;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: relative;
+  margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+.navbar-header {
+  background: #000;
 }

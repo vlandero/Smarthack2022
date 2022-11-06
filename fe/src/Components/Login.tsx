@@ -19,7 +19,7 @@ const Login = () => {
     });
     console.log(result.data);
     sessionStorage.setItem("session", JSON.stringify(result.data));
-    if(result.data.role === "owner"){
+    if (result.data.role === "owner") {
       window.location.href = "/create-startup";
     }
   }
@@ -27,37 +27,47 @@ const Login = () => {
   return (
     <div className="App">
       <h1>Log in</h1>
-      <form className="login">
-        <h3 className="username">Username</h3>
-        <input
-          className="input"
-          type="text"
-          placeholder="Enter your username"
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-          required
-        />
-        <h3 className="password">Password</h3>
-        <input
-          className="input"
-          placeholder="Enter your password"
-          type="password"
-          onChange={(e) => setPwd(e.target.value)}
-          value={pwd}
-          required
-        />
+      <br></br>
+      <div className="tab-content">
+        <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+          <form>
+            <div className="form-outline mb-4">
+              <p className="form-label">Username</p>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Enter your username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                required
+              />
+            </div>
 
-        <button
-          className="input_submit"
-          type="submit"
-          onClick={(e) => loginUser(e)}
-        >
-          Go
-        </button>
-        <p>
-          Create a new account <a href="/signUp">here</a>
-        </p>
-      </form>
+            <div className="form-outline mb-4">
+              <p className="form-label">Password</p>
+              <input
+                className="form-control"
+                placeholder="Enter your password"
+                type="password"
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                required
+              />
+            </div>
+
+            <button
+              className="input_submit"
+              type="submit"
+              onClick={(e) => loginUser(e)}
+            >
+              Go
+            </button>
+            <p>
+              Create a new account <a href="/signUp">here</a>
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

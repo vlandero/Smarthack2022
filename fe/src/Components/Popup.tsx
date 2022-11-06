@@ -23,20 +23,20 @@ export default function Popup({ popup, setPopup }: any) {
   }
   return (
     <div>
-      <div className="modal"></div>
-      <div className="modal-content">
-        <h2 style={{ textAlign: "center" }}>Choose a department page to add</h2>
-        {/* <button onClick={() => setPopup(false)}>Try</button> */}
-        {typeOfPages.map((typeOfPages, index) => (
-          <button
-            onClick={() => {
-              setPopup(false);
-              dashboardPages.push(typeOfPages);
-            }}
-          >
-            {typeOfPages}
-          </button>
-        ))}
+      <div className="modall"></div>
+      <div className="modall-content">
+        <div className="modall-body">
+          {typeOfPages.map((typeOfPages, index) => (
+            <button
+              onClick={() => {
+                setPopup(false);
+                dashboardPages.push(typeOfPages);
+              }}
+            >
+              {typeOfPages}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

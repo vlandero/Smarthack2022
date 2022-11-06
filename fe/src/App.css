@@ -60,14 +60,6 @@ input {
   align-items: center;
 }
 
-.landingPage > h1,
-h3 {
+.landingPage > h1, h3 {
   text-align: center;
-}
-
-.landingPage > button {
-  background-color: burlywood;
-  border-radius: 30%;
-  width: 25%;
-  height: 20vh;
 }

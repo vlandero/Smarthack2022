@@ -15,6 +15,7 @@ declare module "express-session" {
     interface SessionData {
         role?: "owner" | "employee" | null
         username?: string | null
+        password?: string | null
         startupId?: string
     }
 }
@@ -60,7 +61,7 @@ app.post("/login", async (req: Request, res: Response) => {
         req.session.role = "owner";
         req.session.username = username;
         req.session.save();
-        return res.send({...req.session, message: "Logged in as owner"});
+        return res.send({...req.session, message: "Logged in as owner",startups: owner.startupsId});
     }
     const startupId = username.split("_")[0];
     const startup: Startup | null = await StartupModel.findById(startupId);
@@ -69,6 +70,7 @@ app.post("/login", async (req: Request, res: Response) => {
         if (employee) {
             req.session.role = "employee";
             req.session.username = username;
+            req.session.password = password;
             res.send({...req.session, message: "Logged in as employee"});
         }
     }
@@ -102,7 +104,7 @@ app.post("/register-employee", async (req: Request, res: Response) => {
 });
 
 app.post("/create-startup", async (req: Request, res: Response) => {
-    const { name, description } = req.body;
+    const { name, description, username } = req.body;
     const startup = new StartupModel({
         name,
         description: description || undefined,
@@ -110,7 +112,7 @@ app.post("/create-startup", async (req: Request, res: Response) => {
         menus: [],
     });
     await startup.save();
-    const owner = await OwnerModel.findOne({ username: req.session.username });
+    const owner = await OwnerModel.findOne({ username: username });
     if (owner) {
         owner.startupsId.push(startup._id);
         await owner.save();
