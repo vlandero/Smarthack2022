@@ -13,11 +13,15 @@ const Login = () => {
   };
   async function loginUser(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    const result = await axios.post("localhost/login", {
+    const result = await axios.post("http://localhost/login", {
       username: username,
       password: pwd,
     });
     console.log(result.data);
+    sessionStorage.setItem("session", JSON.stringify(result.data));
+    if(result.data.role === "owner"){
+      window.location.href = "/create-startup";
+    }
   }
 
   return (
@@ -46,7 +50,7 @@ const Login = () => {
         <button
           className="input_submit"
           type="submit"
-          // onClick={routeChange("/create-startup")}
+          onClick={(e) => loginUser(e)}
         >
           Go
         </button>

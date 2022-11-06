@@ -3,12 +3,19 @@ import React, { useEffect, useState } from "react";
 import "./CreateStartup.css";
 
 const CreateStartup = () => {
-  const [startups, setStartups] = useState<any[]>([]);
+  const [startups, setStartups] = useState<any>([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   useEffect(() => {
     const fetchDatas = async () => {
-      const result = await axios.get("localhost/startups");
+      const session = JSON.parse(sessionStorage.getItem("session") || "{}");
+      if(session.role !== 'owner'){
+        return window.location.href = "/login";
+      }
+      console.log(session);
+      const result = await axios.post("http://localhost/get-startups",{
+        username: session.username
+      });
       setStartups(result.data);
     };
     fetchDatas();
@@ -19,8 +26,8 @@ const CreateStartup = () => {
       <h2>Create a new startup or go to an existing one</h2>
       <div className="createStartup__form">
         <ul>
-          {startups.map((startup: any) => (
-            <li
+          {startups.map((startup: any,index:number) => (
+            <li key={index}
               onClick={(e) => {
                 console.log(startup);
               }}
