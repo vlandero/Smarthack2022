@@ -3,11 +3,11 @@ import "../App.css";
 
 const LandingPage = () => {
   let navigate = useNavigate();
-  const routeChange = () => {
+  const routeChangeLogin = () => {
     let path = `/logIn`;
     navigate(path);
   };
-  const routeChange2 = () => {
+  const routeChangeSingUp = () => {
     let path = `/signUp`;
     navigate(path);
   };
@@ -15,9 +15,11 @@ const LandingPage = () => {
   return (
     <div className="landingPage">
       <h1>Dream Startup</h1>
-      <h3>qwbvrnwqnbreqn</h3>
-      <button onClick={routeChange}>Log in</button>
-      <button onClick={routeChange2}>Sign up</button>
+      <h3>Build and manage your own startups.</h3>
+      <br></br>
+      <button className="btn btn-primary" onClick={routeChangeLogin}>Log in</button>
+      <br></br>
+      <button className="btn btn-primary" onClick={routeChangeSingUp}>Sign up</button>
     </div>
   );
 };
