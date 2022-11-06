@@ -1,28 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [pwd, setPwd] = useState<string>("");
 
   let navigate = useNavigate();
-  const routeChange = () => {
-    let path = `/home`;
+  const routeChange = (path: string) => {
     navigate(path);
   };
+  async function loginUser(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    const result = await axios.post("localhost/login", {
+      username: username,
+      password: pwd,
+    });
+    console.log(result.data);
+  }
 
   return (
     <div className="App">
       <h1>Log in</h1>
       <form className="login">
-        <h3 className="email">Email</h3>
+        <h3 className="username">Username</h3>
         <input
           className="input"
-          type="email"
-          placeholder="Enter your email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
+          type="text"
+          placeholder="Enter your username"
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
           required
         />
         <h3 className="password">Password</h3>
@@ -35,7 +43,11 @@ const Login = () => {
           required
         />
 
-        <button className="input_submit" type="submit" onClick={routeChange}>
+        <button
+          className="input_submit"
+          type="submit"
+          // onClick={routeChange("/create-startup")}
+        >
           Go
         </button>
         <p>

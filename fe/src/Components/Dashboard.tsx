@@ -3,6 +3,7 @@ import Calendar from "../Dashboard-pages/Calendar";
 import Home from "../Dashboard-pages/Home";
 import "./Dashboard.css";
 import Popup from "./Popup";
+import axios from "axios";
 
 // interface Page {}
 
@@ -12,11 +13,12 @@ var typeOfPages: string[] = ["HR", "Task-Management", "Calendar"];
 const Dashboard = () => {
   const [pageOpen, setpageOpen] = useState<number>(0);
   const [popup, setPopup] = useState<boolean>(false);
+  const [startupId, setStartupId] = useState<number>(0);
 
   return (
     <div className="dashboard">
       <div className="title">
-        <h1>Nume Startup</h1>
+        <h1>{startupId}</h1>
       </div>
       <div className="menu">
         <div className="tabs">
