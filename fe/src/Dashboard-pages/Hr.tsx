@@ -1,9 +1,21 @@
 import React from "react";
+import "./Hr.css";
+
+const employees = [];
 
 export const Hr = () => {
   return (
-    <div>
-      <h1>HR</h1>
+    <div className="hr">
+        <div className="header">
+            <h1>Human resources</h1>
+            <button>Settings</button>
+        </div>
+      
+      <div className="employees">
+        <ul>
+            
+        </ul>
+      </div>
     </div>
   );
 };

@@ -29,6 +29,8 @@ const CreateStartup = () => {
           {startups.map((startup: any,index:number) => (
             <li key={index}
               onClick={(e) => {
+                sessionStorage.setItem("startup", JSON.stringify(startup));
+                window.location.href = "/home";
                 console.log(startup);
               }}
             >

@@ -4,7 +4,7 @@ import "./Popup.css";
 import { dashboardPages } from "./Dashboard";
 
 const typeOfPages: string[] = [
-  "HR",
+  "Hr",
   "Task-Management",
   "Calendar",
   "Contact",

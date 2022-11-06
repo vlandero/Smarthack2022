@@ -15,11 +15,6 @@
   z-index: 1000;
 }
 
-.content {
-  flex: 3;
-  background-color:   #fff9ba;
-  text-align: center;
-}
 
 ul {
   list-style-type: none;
