@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 interface Props {
   pageOpen: number;
@@ -10,7 +11,7 @@ const Home = ({ pageOpen }: Props) => {
   }
   return (
     <div>
-      <h1> Welcome to Home Page!</h1>
+      <h2> </h2>
       <br></br>
       <p>Here you can create your own departments!</p>
     </div>

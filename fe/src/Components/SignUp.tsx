@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
@@ -6,14 +7,27 @@ const SignUp = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [pwd, setPwd] = useState<string>("");
 
   let navigate = useNavigate();
-  const routeChange = () => {
-    let path = `/home`;
+  const routeChange = (path: string): void => {
     navigate(path);
   };
-
+  async function registerUser(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+    const result = await axios.post("http://localhost/register-owner", {
+      email: email,
+      password: pwd,
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+    });
+    console.log(result.data);
+    routeChange("/login");
+  }
   return (
     <div className="App">
       <h1>Sign up</h1>
@@ -58,6 +72,18 @@ const SignUp = () => {
             </div>
 
             <div className="form-outline mb-4">
+              <p className="form-label">Email</p>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Enter your username"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                required
+              />
+            </div>
+
+            <div className="form-outline mb-4">
               <p className="form-label">Password</p>
               <input
                 className="form-control"
@@ -69,7 +95,7 @@ const SignUp = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary btn-block mb-3" onClick={routeChange}>Sign up</button>
+            <button type="submit" className="btn btn-primary btn-block mb-3" onClick={(e)=>{registerUser(e)}}>Sign up</button>
           </form>
         </div>
       </div>

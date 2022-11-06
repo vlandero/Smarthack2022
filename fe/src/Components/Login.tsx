@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [pwd, setPwd] = useState<string>("");
 
   let navigate = useNavigate();
-  const routeChange = () => {
-    let path = `/home`;
+  const routeChange = (path: string) => {
     navigate(path);
   };
+  async function loginUser(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    const result = await axios.post("http://localhost/login", {
+      username: username,
+      password: pwd,
+    });
+    console.log(result.data);
+    sessionStorage.setItem("session", JSON.stringify(result.data));
+    if (result.data.role === "owner") {
+      window.location.href = "/create-startup";
+    }
+  }
 
   return (
     <div className="App">
@@ -43,12 +55,21 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary btn-block mb-3" onClick={routeChange}>Sign in</button>
-
+            <button
+              className="input_submit"
+              type="submit"
+              onClick={(e) => loginUser(e)}
+            >
+              Go
+            </button>
+            <p>
+              Create a new account <a href="/signUp">here</a>
+            </p>
           </form>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 };
 
 export default Login;

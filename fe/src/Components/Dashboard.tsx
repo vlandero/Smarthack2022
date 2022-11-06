@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Calendar from "../Dashboard-pages/Calendar";
 import Home from "../Dashboard-pages/Home";
 import "./Dashboard.css";
 import Popup from "./Popup";
+import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 var dashboardPages: string[] = [];
@@ -11,10 +12,19 @@ var typeOfPages: string[] = [];
 const Dashboard = () => {
   const [pageOpen, setpageOpen] = useState<number>(0);
   const [popup, setPopup] = useState<boolean>(false);
+  const [startupId, setStartupId] = useState<number>(0);
+
+  useEffect(() => {
+    const session = JSON.parse(sessionStorage.getItem("session") || "{}");
+    if(!session.username){
+      window.location.href = "/login";
+    }
+  })
+  
   return (
     <div className="navbar-header">
       <div className="title">
-        <h1>Nume Startup</h1>
+        <h1>{startupId}</h1>
       </div>
       <div id="sidebar-wrapper">
         <ul className="sidebar-nav">
