@@ -33,7 +33,7 @@ app.use(session({
 }));
 
 
-mongoose.connect('mongodb+srv://vlandero:Vladkvlad1@democluster.cyxil.mongodb.net/smarthack2022?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGO_URI);
 export const StartupModel = mongoose.model('Startup', startupSchema);
 export const OwnerModel = mongoose.model('Owner', ownerSchema);
 
